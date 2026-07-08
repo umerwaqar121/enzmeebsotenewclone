@@ -14,11 +14,16 @@ interface DiaTextProps {
  * behind the registry CLI, so this rebuilds the documented behavior:
  * an array of strings, each sweeping in and holding before the next).
  */
-/** Controlled variant — parent drives which string shows via `text`, no internal timer. Pass `colors` to also loop the text color (21st.dev/@aliimam/components/text-color style). */
-export function DiaTextReveal({ text, className = '', colors }: { text: string; className?: string; colors?: string[] }) {
+/**
+ * Controlled variant — parent drives which string shows via `text`, no internal timer.
+ * Pass `colors` to also loop the text color (21st.dev/@aliimam/components/text-color style).
+ * Pass `skipEntrance` for text that remounts often (e.g. a cycling label) so it doesn't
+ * replay its fade-in on every switch; one-time headings should leave it false to animate in.
+ */
+export function DiaTextReveal({ text, className = '', colors, skipEntrance = false }: { text: string; className?: string; colors?: string[]; skipEntrance?: boolean }) {
   return (
     <span className={`relative inline-grid ${className}`}>
-      <AnimatePresence mode="wait" initial={false}>
+      <AnimatePresence mode="wait" initial={!skipEntrance}>
         <motion.span
           key={text}
           initial={{ opacity: 0, y: '60%', filter: 'blur(6px)' }}

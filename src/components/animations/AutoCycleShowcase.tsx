@@ -37,7 +37,7 @@ export default function AutoCycleShowcase() {
       <Animation key={category} />
       <div className="absolute inset-x-0 top-[22%] sm:top-[26%] flex justify-center pointer-events-none z-10 px-4">
         <h3 className="font-display text-4xl sm:text-7xl lg:text-9xl text-white text-center uppercase leading-none">
-          <DiaTextReveal text={category} />
+          <DiaTextReveal text={category} skipEntrance />
         </h3>
       </div>
     </div>

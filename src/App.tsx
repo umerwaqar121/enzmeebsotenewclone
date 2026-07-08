@@ -15,6 +15,7 @@ import { OriginButton } from './components/OriginButton';
 import DiaText, { DiaTextReveal } from './components/DiaText';
 import { ParticleWave } from './components/ParticleWave';
 import TextColorCycle from './components/TextColorCycle';
+import { defaultCmsContent, resolveMediaUrl, type CmsContent } from './cmsContent';
 import photoParkingMarkings from './assets/e4 copy.jpg';
 import photoChurchMarkings from './assets/e5 copy.jpg';
 import photoPaverDriveway from './assets/en1p copy.jpg';
@@ -42,12 +43,6 @@ interface Testimonial {
   rating: number;
   avatar: string;
   projectSpecs: string;
-}
-
-interface CmsContent {
-  hero: { mediaType: string; mediaFile: string; headline: string; subheadline: string; buttonText: string; buttonLink: string };
-  stats: { value: string; label: string }[];
-  contact: { phone: string; email: string; address: string };
 }
 
 interface ProjectCardProps {
@@ -86,9 +81,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ proj, fixedWidth = true, sele
 };
 
 export default function App() {
-  const [cms, setCms] = useState<CmsContent | null>(null);
+  const [cms, setCms] = useState<CmsContent>(defaultCmsContent);
 
   useEffect(() => {
+    // Only the local dev admin server exists at this address — in production
+    // (Vercel) we skip the fetch and just use the bundled defaultCmsContent.
+    if (!import.meta.env.DEV) return;
     fetch('http://localhost:4000/api/content')
       .then(r => r.json())
       .then(setCms)
@@ -475,7 +473,7 @@ export default function App() {
           </a>
 
           <ul className="hidden md:flex items-center gap-5 lg:gap-6">
-            {['Testimonials', 'Calculator', 'Contact'].map((link) => (
+            {['Testimonials', 'Contact'].map((link) => (
               <li key={link}>
                 <a 
                   href={`#${link.toLowerCase()}`}
@@ -527,7 +525,7 @@ export default function App() {
               exit={{ opacity: 0, y: -20 }}
               className="absolute top-20 left-0 w-full glass-morphism rounded-3xl p-6 border border-border flex flex-col gap-4 shadow-2xl md:hidden"
             >
-              {['Testimonials', 'Calculator', 'Contact'].map((link) => (
+              {['Testimonials', 'Contact'].map((link) => (
                 <a 
                   key={link}
                   href={`#${link.toLowerCase()}`}
@@ -556,15 +554,15 @@ export default function App() {
       <section className="relative min-h-[100vh] md:min-h-[105vh] flex items-center justify-center pt-12 md:pt-14 pb-10 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-asphalt/20 via-asphalt/65 to-asphalt z-10"></div>
-          {cms?.hero.mediaType === 'video' && cms.hero.mediaFile ? (
+          {cms.hero.mediaType === 'video' && cms.hero.mediaFile ? (
             <video
-              src={`http://localhost:4000${cms.hero.mediaFile}`}
+              src={resolveMediaUrl(cms.hero.mediaFile)}
               autoPlay muted loop playsInline
               className="w-full h-full object-cover filter brightness-50"
             />
           ) : (
             <motion.img
-              src={cms?.hero.mediaFile ? `http://localhost:4000${cms.hero.mediaFile}` : photoTruckTip}
+              src={cms.hero.mediaFile ? resolveMediaUrl(cms.hero.mediaFile) : photoTruckTip}
               alt="Hero"
               className="w-full h-full object-cover scale-110 filter brightness-50 contrast-110 saturate-[0.85]"
               style={{ y: heroImageY }}
@@ -1497,7 +1495,7 @@ export default function App() {
         {/* Full-bleed autoplaying video — no card edges, no play button */}
         <div className="relative w-full aspect-video bg-charcoal overflow-hidden">
           <video
-            src={cms?.hero.mediaFile ? `http://localhost:4000${cms.hero.mediaFile}` : undefined}
+            src={cms.hero.mediaFile ? resolveMediaUrl(cms.hero.mediaFile) : undefined}
             autoPlay
             muted
             loop
