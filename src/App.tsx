@@ -13,6 +13,8 @@ import AutoCycleShowcase from './components/animations/AutoCycleShowcase';
 import { GradientShimmer } from './components/GradientShimmer';
 import { OriginButton } from './components/OriginButton';
 import DiaText, { DiaTextReveal } from './components/DiaText';
+import { ParticleWave } from './components/ParticleWave';
+import TextColorCycle from './components/TextColorCycle';
 import photoParkingMarkings from './assets/e4 copy.jpg';
 import photoChurchMarkings from './assets/e5 copy.jpg';
 import photoPaverDriveway from './assets/en1p copy.jpg';
@@ -473,7 +475,7 @@ export default function App() {
           </a>
 
           <ul className="hidden md:flex items-center gap-5 lg:gap-6">
-            {['Projects', 'Testimonials', 'Calculator', 'Insights', 'Contact'].map((link) => (
+            {['Testimonials', 'Calculator', 'Contact'].map((link) => (
               <li key={link}>
                 <a 
                   href={`#${link.toLowerCase()}`}
@@ -525,7 +527,7 @@ export default function App() {
               exit={{ opacity: 0, y: -20 }}
               className="absolute top-20 left-0 w-full glass-morphism rounded-3xl p-6 border border-border flex flex-col gap-4 shadow-2xl md:hidden"
             >
-              {['Projects', 'Testimonials', 'Calculator', 'Insights', 'Contact'].map((link) => (
+              {['Testimonials', 'Calculator', 'Contact'].map((link) => (
                 <a 
                   key={link}
                   href={`#${link.toLowerCase()}`}
@@ -577,7 +579,7 @@ export default function App() {
               initial={{ opacity: 0, y: 60 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="text-5xl sm:text-7xl md:text-9xl font-sans font-black tracking-tighter leading-[0.9] text-concrete select-none"
+              className="text-6xl sm:text-8xl md:text-[10rem] font-sans font-black tracking-tighter leading-[0.9] text-concrete select-none"
             >
               {cms?.hero.headline || 'Surfacing'} <br />
               <DiaText
@@ -1106,6 +1108,14 @@ export default function App() {
         </div>
       </section>
 
+      {/* ═══ SECTIONS 02–07 BACKGROUND WRAPPER (particle wave) ═══ */}
+      <div className="relative">
+        <div className="sticky top-0 h-0 overflow-visible pointer-events-none -z-10">
+          <div className="absolute inset-x-0 top-0 h-screen overflow-hidden">
+            <ParticleWave />
+          </div>
+        </div>
+
       {/* ═══ LEADS CAPTURE + PRICE ESTIMATE ═══ */}
       <section className="relative py-10 md:py-16 bg-gradient-to-b from-asphalt via-charcoal/20 to-asphalt border-y border-border" id="calculator">
         <div className="max-w-6xl mx-auto px-4 md:px-8">
@@ -1319,7 +1329,7 @@ export default function App() {
           >
             <span className="text-xs font-mono tracking-widest text-amber-primary uppercase">03 — Featured Transformation</span>
             <h2 className="font-display text-2xl sm:text-3xl tracking-tight">
-              <DiaTextReveal text="Villa Blanchard Residents Association." />
+              <DiaTextReveal text="Villa Blanchard Residents Association." colors={['#FF6B00', '#ffffff', '#FF6B00']} />
             </h2>
             <p className="text-sm text-white/70 font-light leading-relaxed">
               2.4km of private estate lanes fully restored — new sub-base, premium SMA asphalt, and reflective line markings.
@@ -1383,8 +1393,8 @@ export default function App() {
           <span className="text-xs font-mono tracking-widest text-amber-primary uppercase block mb-3">
             05 — Client Testimonials
           </span>
-          <h2 className="text-3xl sm:text-5xl font-sans font-black tracking-tight mb-4 text-white">
-            Trusted by communities.
+          <h2 className="text-3xl sm:text-5xl font-sans font-black tracking-tight mb-4">
+            <TextColorCycle colors={['#ffffff', '#FF6B00', '#ffffff']}>Trusted by communities.</TextColorCycle>
           </h2>
           <p className="text-sm text-white/70 font-light leading-relaxed">
             We deliver the highest customer retention metrics in the Irish paving industry. Our clients speak for themselves.
@@ -1475,7 +1485,7 @@ export default function App() {
               07 — Watch Our Work
             </span>
             <h2 className="font-display text-3xl sm:text-5xl tracking-tight">
-              <DiaTextReveal text="Real projects. Real precision." />
+              <DiaTextReveal text="Real projects. Real precision." colors={['#FF6B00', '#ffffff', '#FF6B00']} />
             </h2>
             <p className="text-sm text-white font-light leading-relaxed">
               Experience the steam-rolling, bitumen spraying, and grading operations live from our municipal roadwork sites.
@@ -1497,6 +1507,8 @@ export default function App() {
         </div>
 
       </section>
+      </div>
+      {/* ═══ END SECTIONS 02–07 BACKGROUND WRAPPER ═══ */}
 
       {/* ═══ BLOG ═══ */}
       <section className="relative py-10 md:py-16 bg-black/30 border-t border-border" id="insights">
