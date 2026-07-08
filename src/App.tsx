@@ -13,6 +13,12 @@ import AutoCycleShowcase from './components/animations/AutoCycleShowcase';
 import { GradientShimmer } from './components/GradientShimmer';
 import { OriginButton } from './components/OriginButton';
 import DiaText, { DiaTextReveal } from './components/DiaText';
+import photoParkingMarkings from './assets/e4 copy.jpg';
+import photoChurchMarkings from './assets/e5 copy.jpg';
+import photoPaverDriveway from './assets/en1p copy.jpg';
+import photoPaverFinish from './assets/en2 copy.jpg';
+import photoTruckTip from './assets/en3 copy.jpg';
+import photoBeforePaving from './assets/enbefore copy.jpg';
 
 // Compact high-quality types & interfaces
 interface Project {
@@ -258,19 +264,19 @@ export default function App() {
   ];
 
   const projects: Project[] = [
-    { id: '1',  title: 'Villa Blanchard Residency',            category: 'Residential',   location: 'Co. Dublin',       specs: '2.4km estate road restoration',            material: 'SMA Asphalt (40mm)',           timeline: '14 Days',  image: 'https://images.unsplash.com/photo-1545558014-8692077e9b5c?auto=format&fit=crop&w=800&q=80' },
-    { id: '2',  title: 'Dublin Logistics Depot',               category: 'Commercial',    location: 'Co. Dublin',       specs: '8,500m² heavy duty freight yard',          material: 'Stone Mastic Asphalt',         timeline: '8 Days',   image: 'https://images.unsplash.com/photo-1590674899484-d5640e854abe?auto=format&fit=crop&w=800&q=80' },
+    { id: '1',  title: 'Villa Blanchard Residency',            category: 'Residential',   location: 'Co. Dublin',       specs: '2.4km estate road restoration',            material: 'SMA Asphalt (40mm)',           timeline: '14 Days',  image: photoPaverFinish },
+    { id: '2',  title: 'Dublin Logistics Depot',               category: 'Commercial',    location: 'Co. Dublin',       specs: '8,500m² heavy duty freight yard',          material: 'Stone Mastic Asphalt',         timeline: '8 Days',   image: photoTruckTip },
     { id: '3',  title: 'St. Jude Primary CFH Playground',      category: 'Sports & Play', location: 'Co. Kildare',      specs: 'Safety wetpour EPDM playground',           material: 'EPDM Rubber Wetpour',          timeline: '3 Days',   image: 'https://images.unsplash.com/photo-1597893104482-07b5eb55d53c?auto=format&fit=crop&w=800&q=80' },
-    { id: '4',  title: 'M50 Orbital Layout System',            category: 'Line Markings', location: 'Dublin Ring',      specs: 'Retroreflective highway markings',         material: 'Thermoplastic Compound',       timeline: '4 Nights', image: 'https://images.unsplash.com/photo-1531843781708-b603e8960b5a?auto=format&fit=crop&w=800&q=80' },
+    { id: '4',  title: 'M50 Orbital Layout System',            category: 'Line Markings', location: 'Dublin Ring',      specs: 'Retroreflective highway markings',         material: 'Thermoplastic Compound',       timeline: '4 Nights', image: photoParkingMarkings },
     { id: '5',  title: 'Limerick Express Cargo Terminal',       category: 'Civil',         location: 'Co. Limerick',     specs: 'Drainage network & ground consolidation',  material: 'Sub-base Gravel & Drainage',   timeline: '12 Days',  image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80' },
     { id: '6',  title: 'Howth Waterfront Promenade',           category: 'Commercial',    location: 'Co. Dublin',       specs: 'Permeable pedestrian walkway overlay',     material: 'Gold Resin Bound Gravel',      timeline: '5 Days',   image: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=800&q=80' },
-    { id: '7',  title: 'Killiney Manor Carriage Drive',         category: 'Residential',   location: 'Co. Dublin',       specs: 'Heritage estate private driveway',         material: 'Amber Tar & Chip (3-coat)',    timeline: '2 Days',   image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80' },
+    { id: '7',  title: 'Killiney Manor Carriage Drive',         category: 'Residential',   location: 'Co. Dublin',       specs: 'Heritage estate private driveway',         material: 'Amber Tar & Chip (3-coat)',    timeline: '2 Days',   image: photoPaverDriveway },
     { id: '8',  title: 'Dundalk Athletics MUGA',               category: 'Sports & Play', location: 'Co. Louth',        specs: 'Triple layer acrylic running lanes',       material: 'Sports Acrylic Paint',         timeline: '6 Days',   image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80' },
     { id: '9',  title: 'Blanchardstown D15 Road & Car Park',   category: 'Commercial',    location: 'Blanchardstown D15', specs: 'Internal estate road & car park resurfacing', material: 'Dense Macadam Binder',      timeline: '4 Days',   image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80' },
     { id: '10', title: 'Dublin 11 Industrial Estate',           category: 'Commercial',    location: 'Dublin 11',        specs: 'Ongoing repairs — asphalt, tarmac & car park markings', material: 'Asphalt & Thermoplastic', timeline: '4+ Years', image: 'https://images.unsplash.com/photo-1513467655676-561b7d489a88?auto=format&fit=crop&w=800&q=80' },
     { id: '11', title: 'Summerhill Management Company',         category: 'Commercial',    location: 'Co. Meath',        specs: 'Full estate repair & resurfacing',         material: 'Dense Binder Course Asphalt', timeline: '6 Days',   image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80' },
     { id: '12', title: 'Institute of Education Car Parks',      category: 'Commercial',    location: 'Co. Dublin',       specs: 'Outdoor canteen & car park resurfacing',   material: 'SMA Wearing Course',           timeline: '10 Days',  image: 'https://images.unsplash.com/photo-1562184552-997c461abbe6?auto=format&fit=crop&w=800&q=80' },
-    { id: '13', title: 'Balheary Church Car Park',              category: 'Commercial',    location: 'Co. Dublin',       specs: 'Full car park resurfacing',                material: 'Tarmacadam Wearing Course',    timeline: '3 Days',   image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80' },
+    { id: '13', title: 'Balheary Church Car Park',              category: 'Commercial',    location: 'Co. Dublin',       specs: 'Full car park resurfacing',                material: 'Tarmacadam Wearing Course',    timeline: '3 Days',   image: photoChurchMarkings },
     { id: '14', title: 'Stud Farm Yard Preparation',            category: 'Bespoke Works', location: 'Co. Kildare',      specs: 'Full yard preparation & resurfacing',      material: 'Rolled Macadam (2005)',        timeline: '5 Days',   image: 'https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&w=800&q=80' },
     { id: '15', title: 'Long-Term Commercial Client',           category: 'Commercial',    location: 'Co. Dublin',       specs: 'Full carpark resurfacing & minor repairs — night & weekend works', material: 'Asphalt & Sealcoat', timeline: '20+ Years', image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=800&q=80' },
   ];
@@ -556,7 +562,7 @@ export default function App() {
             />
           ) : (
             <motion.img
-              src={cms?.hero.mediaFile ? `http://localhost:4000${cms.hero.mediaFile}` : 'https://images.unsplash.com/photo-1545558014-8692077e9b5c?auto=format&fit=crop&w=1920&q=80'}
+              src={cms?.hero.mediaFile ? `http://localhost:4000${cms.hero.mediaFile}` : photoTruckTip}
               alt="Hero"
               className="w-full h-full object-cover scale-110 filter brightness-50 contrast-110 saturate-[0.85]"
               style={{ y: heroImageY }}
@@ -1354,11 +1360,11 @@ export default function App() {
               onTouchMove={onSliderTouchMove}
             >
               <div className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1565043589221-1a6fd9ae1d80?auto=format&fit=crop&w=1200&q=80)' }}>
+                style={{ backgroundImage: `url(${photoBeforePaving})` }}>
                 <span className="absolute top-3 left-3 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-full text-[9px] font-mono tracking-wider uppercase text-concrete border border-white/10">Before</span>
               </div>
               <div className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1545558014-8692077e9b5c?auto=format&fit=crop&w=1200&q=80)', clipPath: `inset(0 0 0 ${sliderPos}%)` }}>
+                style={{ backgroundImage: `url(${photoPaverFinish})`, clipPath: `inset(0 0 0 ${sliderPos}%)` }}>
                 <span className="absolute top-3 right-3 bg-amber-primary/95 text-asphalt font-mono px-2 py-0.5 rounded-full text-[9px] font-bold tracking-wider uppercase">After</span>
               </div>
               <div className="absolute top-0 bottom-0 w-0.5 bg-amber-primary pointer-events-none" style={{ left: `${sliderPos}%` }}>
