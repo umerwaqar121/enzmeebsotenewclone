@@ -7,7 +7,7 @@ import React from 'react';
  * Styled vector with exact green/orange arrows and custom dual-language text.
  */
 export const IrishRailLogo = () => (
-  <svg viewBox="0 0 200 60" className="h-10 w-auto opacity-85 hover:opacity-100 transition-opacity" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg viewBox="0 0 200 60" className="h-14 md:h-16 w-auto opacity-85 hover:opacity-100 transition-opacity" fill="none" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <linearGradient id="irishRailGreen" x1="0" y1="0" x2="0" y2="1">
         <stop offset="0%" stopColor="#7CB342" />
@@ -37,7 +37,7 @@ export const IrishRailLogo = () => (
  * Highly-polished medieval crest with golden crown, cross, anchor, and scroll ribbon.
  */
 export const MisericordiaLogo = () => (
-  <svg viewBox="0 0 220 60" className="h-11 w-auto opacity-85 hover:opacity-100 transition-opacity" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg viewBox="0 0 220 60" className="h-16 md:h-20 w-auto opacity-85 hover:opacity-100 transition-opacity" fill="none" xmlns="http://www.w3.org/2000/svg">
     {/* Elegant Gold Crown */}
     <path d="M20 9 L17 15 L28 13 L39 15 L36 9 Z" fill="#FFC107" stroke="#FF8F00" strokeWidth="1" />
     <circle cx="17" cy="15" r="1.2" fill="#FF8F00" />
@@ -76,7 +76,7 @@ export const MisericordiaLogo = () => (
  * Divided into 4 colored quadrants: Book, Sundial, Fern, and Castle.
  */
 export const MaynoothLogo = () => (
-  <svg viewBox="0 0 250 60" className="h-11 w-auto opacity-85 hover:opacity-100 transition-opacity" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg viewBox="0 0 250 60" className="h-16 md:h-20 w-auto opacity-85 hover:opacity-100 transition-opacity" fill="none" xmlns="http://www.w3.org/2000/svg">
     {/* White shield backing */}
     <rect x="10" y="10" width="36" height="36" rx="4" fill="#FFFFFF" />
     
@@ -114,7 +114,7 @@ export const MaynoothLogo = () => (
  * Heavy, modern geometric wordmark with the signature green accent arc.
  */
 export const RteLogo = () => (
-  <svg viewBox="0 0 160 60" className="h-10 w-auto opacity-85 hover:opacity-100 transition-opacity" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg viewBox="0 0 160 60" className="h-14 md:h-16 w-auto opacity-85 hover:opacity-100 transition-opacity" fill="none" xmlns="http://www.w3.org/2000/svg">
     {/* "R" */}
     <path d="M15 44 V16 H29 C35.5 16, 39.5 19.5, 39.5 25.5 C39.5 30.5, 35.5 33.5, 30.5 33.5 H21.5 V44 H15 Z M21.5 28 H29.5 C32 28, 33.5 27, 33.5 25 C33.5 23, 32 22, 29.5 22 H21.5 V28 Z" fill="#FFFFFF" />
     <path d="M29 33 L39.5 44 H32 L23 33.5 H29 Z" fill="#FFFFFF" />
@@ -135,7 +135,7 @@ export const RteLogo = () => (
  * Crest with 3 castles, UCD DUBLIN text, and a golden Irish harp in deep green background.
  */
 export const UcdLogo = () => (
-  <svg viewBox="0 0 180 60" className="h-11 w-auto opacity-85 hover:opacity-100 transition-opacity" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg viewBox="0 0 180 60" className="h-16 md:h-20 w-auto opacity-85 hover:opacity-100 transition-opacity" fill="none" xmlns="http://www.w3.org/2000/svg">
     {/* Shield outer boundary */}
     <path d="M12 10 H42 V28 C42 35, 27 48, 27 48 C27 48, 12 35, 12 28 V10 Z" fill="#01579B" stroke="#00C853" strokeWidth="1.5" />
     
@@ -161,5 +161,21 @@ export const UcdLogo = () => (
     {/* Logo typography */}
     <text x="49" y="28" fill="#FFFFFF" fontSize="15" fontWeight="800" fontFamily="system-ui, sans-serif">UCD</text>
     <text x="49" y="42" fill="#B0BEC5" fontSize="11" fontWeight="500" fontFamily="system-ui, sans-serif" letterSpacing="0.1px">University College Dublin</text>
+  </svg>
+);
+
+/**
+ * 6. Transport Infrastructure Ireland (TII) Logo
+ * Wordmark with a stylised road-arrow mark in TII blue.
+ */
+export const TiiLogo = () => (
+  <svg viewBox="0 0 180 60" className="h-14 md:h-16 w-auto opacity-85 hover:opacity-100 transition-opacity" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Road-arrow mark */}
+    <path d="M14 44 L26 16 L38 44 H31.5 L26 30 L20.5 44 H14 Z" fill="#0057A6" />
+    <rect x="24" y="34" width="4" height="4" fill="#FFFFFF" />
+
+    {/* TII wordmark */}
+    <text x="46" y="30" fill="#FFFFFF" fontSize="17" fontWeight="800" fontFamily="system-ui, sans-serif" letterSpacing="1.5">TII</text>
+    <text x="46" y="42" fill="#8FA9C2" fontSize="8" fontWeight="500" fontFamily="system-ui, sans-serif" letterSpacing="0.2px">Transport Infrastructure Ireland</text>
   </svg>
 );
