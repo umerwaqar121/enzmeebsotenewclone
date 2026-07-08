@@ -517,7 +517,7 @@ export default function App() {
       </header>
 
       {/* ═══ PARALLAX HERO SECTION ═══ */}
-      <section className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center pt-20 pb-10 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-asphalt/20 via-asphalt/65 to-asphalt z-10"></div>
           <motion.img
@@ -560,32 +560,32 @@ export default function App() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-2xl text-base sm:text-lg text-white font-light leading-relaxed tracking-wide"
+            className="max-w-2xl text-sm sm:text-lg text-white font-light leading-relaxed tracking-wide px-2"
           >
-            Ireland's premier surfacing and infrastructure specialists. Precision-engineered tarmacadam, high-grade asphalt, and robust civil solutions designed to endure heavy transport loads.
+            Ireland's premier surfacing specialists. Precision-engineered tarmacadam, asphalt &amp; civil solutions built to last.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col sm:flex-row items-center gap-4 mt-4 w-full sm:w-auto"
+            className="flex flex-row flex-wrap items-center justify-center gap-3 mt-2 w-full"
           >
             <a
               href="#calculator"
-              className="w-full sm:w-auto bg-white text-asphalt hover:bg-amber-primary font-bold px-8 py-4 rounded-full shadow-[0_12px_30px_-6px_rgba(255,255,255,0.2)] transition-all flex items-center justify-center gap-2 cursor-none"
+              className="flex-1 min-w-[140px] bg-white text-asphalt hover:bg-amber-primary font-bold px-5 py-3 sm:px-8 sm:py-4 rounded-full shadow-[0_12px_30px_-6px_rgba(255,255,255,0.2)] transition-all flex items-center justify-center gap-2 cursor-none text-sm sm:text-base"
               onMouseEnter={() => setCursorHovered(true)}
               onMouseLeave={() => setCursorHovered(false)}
             >
-              Instant Cost Estimate <ArrowRight className="w-5 h-5" />
+              Get A Price <ArrowRight className="w-4 h-4" />
             </a>
-            <a 
-              href="#projects" 
-              className="w-full sm:w-auto glass-morphism border border-border hover:border-concrete/50 text-concrete font-semibold px-8 py-4 rounded-full transition-all flex items-center justify-center gap-2 cursor-none"
+            <a
+              href="#projects"
+              className="flex-1 min-w-[140px] glass-morphism border border-border hover:border-concrete/50 text-concrete font-semibold px-5 py-3 sm:px-8 sm:py-4 rounded-full transition-all flex items-center justify-center gap-2 cursor-none text-sm sm:text-base"
               onMouseEnter={() => setCursorHovered(true)}
               onMouseLeave={() => setCursorHovered(false)}
             >
-              Explore Our Portfolio
+              Our Portfolio
             </a>
           </motion.div>
 
@@ -597,8 +597,8 @@ export default function App() {
       </section>
 
       {/* ═══ TRUST STRIP / COUNTERS SECTION ═══ */}
-      <section ref={trustRef} className="relative bg-white border-y border-gray-200 py-12 md:py-16 overflow-hidden z-10">
-        <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 text-center">
+      <section ref={trustRef} className="relative bg-white border-y border-gray-200 py-6 md:py-12 overflow-hidden z-10">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-4 text-center">
 
           {[
             { value: counts.years, suffix: '', label: 'Years of Legacy', color: 'text-black', labelColor: 'text-black', delay: 0 },
@@ -608,13 +608,13 @@ export default function App() {
           ].map((stat) => (
             <motion.div
               key={stat.label}
-              className="pt-4 md:pt-0"
+              className="pt-2 md:pt-0"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.6, delay: stat.delay, ease: [0.22, 1, 0.36, 1] }}
             >
-              <h3 className={`font-mono text-4xl md:text-5xl lg:text-6xl font-black tracking-tight ${stat.color}`}>
+              <h3 className={`font-mono text-3xl md:text-5xl lg:text-6xl font-black tracking-tight ${stat.color}`}>
                 {stat.value}{stat.suffix}
               </h3>
               <p className={`text-xs font-mono uppercase tracking-widest mt-2 ${stat.labelColor}`}>
@@ -664,7 +664,7 @@ export default function App() {
         </div>
 
       {/* ═══ COMBINED PARTNERS & GOOGLE REVIEWS SECTION ═══ */}
-      <section className="relative bg-black/60 border-b border-border py-8 md:py-12 overflow-hidden z-10 select-none">
+      <section className="relative bg-black/60 border-b border-border py-5 md:py-10 overflow-hidden z-10 select-none">
         {/* Centers subtitle */}
         <div className="max-w-7xl mx-auto px-6 md:px-8 text-center mb-6">
           <p className="text-xs md:text-sm font-mono uppercase tracking-widest text-amber-primary/90 font-medium">
@@ -998,19 +998,19 @@ export default function App() {
       </section>}
 
       {/* ═══ PROJECT GALLERY / SHOWCASE ═══ */}
-      <section className="relative py-24 px-6 md:px-8 max-w-7xl mx-auto">
-        
+      <section className="relative py-10 md:py-20 px-4 md:px-8 max-w-7xl mx-auto" id="projects">
+
         <motion.div
-          className="text-center max-w-2xl mx-auto mb-12"
+          className="text-center max-w-2xl mx-auto mb-5 md:mb-10"
           initial={{ opacity: 0, y: 36 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span className="text-xs font-mono tracking-widest text-amber-primary uppercase block mb-3">
+          <span className="text-xs font-mono tracking-widest text-amber-primary uppercase block mb-2">
             01 — Project Showcase
           </span>
-          <h2 className="text-3xl sm:text-5xl font-sans font-black tracking-tight mb-4">
+          <h2 className="text-2xl sm:text-5xl font-sans font-black tracking-tight mb-2 md:mb-4">
             Legacy in tarmacadam.
           </h2>
           <p className="text-sm text-white font-light">
@@ -1019,12 +1019,12 @@ export default function App() {
         </motion.div>
 
         {/* Filter Navigation Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
+        <div className="flex flex-wrap items-center justify-center gap-1.5 mb-5 md:mb-8">
           {['All', 'Commercial', 'Residential', 'Sports & Play', 'Line Markings', 'Civil'].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-5 py-2.5 rounded-full text-xs font-mono transition-all uppercase tracking-wider cursor-none ${
+              className={`px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full text-[10px] sm:text-xs font-mono transition-all uppercase tracking-wider cursor-none ${
                 activeTab === tab 
                   ? 'bg-amber-primary text-asphalt font-bold shadow-[0_4px_12px_rgba(255,107,0,0.25)]' 
                   : 'bg-glass text-white/90 hover:text-white border border-border'
@@ -1038,7 +1038,7 @@ export default function App() {
         </div>
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((proj, index) => (
               <motion.div
@@ -1049,7 +1049,7 @@ export default function App() {
                 whileHover={{ y: -6, transition: { duration: 0.25, ease: 'easeOut' } }}
                 transition={{ duration: 0.5, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
                 key={proj.id}
-                className="group relative rounded-2xl overflow-hidden border border-border bg-charcoal min-h-[280px] flex flex-col justify-end p-5 cursor-none"
+                className="group relative rounded-xl overflow-hidden border border-border bg-charcoal min-h-[170px] sm:min-h-[280px] flex flex-col justify-end p-3 sm:p-5 cursor-none"
               >
                 <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style={{ backgroundImage: `url(${proj.image})` }}></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-asphalt via-asphalt/35 to-transparent"></div>
@@ -1085,11 +1085,11 @@ export default function App() {
       </section>
 
       {/* ═══ LEADS CAPTURE + PRICE ESTIMATE ═══ */}
-      <section className="relative py-20 bg-gradient-to-b from-asphalt via-charcoal/20 to-asphalt border-y border-border" id="calculator">
-        <div className="max-w-6xl mx-auto px-6 md:px-8">
+      <section className="relative py-10 md:py-16 bg-gradient-to-b from-asphalt via-charcoal/20 to-asphalt border-y border-border" id="calculator">
+        <div className="max-w-6xl mx-auto px-4 md:px-8">
 
           <motion.div
-            className="text-center max-w-xl mx-auto mb-12"
+            className="text-center max-w-xl mx-auto mb-6 md:mb-10"
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
@@ -1098,7 +1098,7 @@ export default function App() {
             <span className="text-xs font-mono tracking-widest text-amber-primary uppercase block mb-3">
               02 — Get A Price
             </span>
-            <h2 className="text-3xl sm:text-4xl font-sans font-black tracking-tight mb-3">
+            <h2 className="text-2xl sm:text-4xl font-sans font-black tracking-tight mb-2">
               Get your instant estimate.
             </h2>
             <p className="text-sm text-white/60 font-light">
@@ -1110,7 +1110,7 @@ export default function App() {
 
             {/* LEFT — Lead capture form */}
             <motion.div
-              className="lg:col-span-3 bg-black/40 border border-border rounded-2xl p-6 md:p-8"
+              className="lg:col-span-3 bg-black/40 border border-border rounded-2xl p-4 md:p-8"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: '-60px' }}
@@ -1174,7 +1174,7 @@ export default function App() {
                   </div>
 
                   {/* Contact fields */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="grid grid-cols-2 gap-3">
                     <input type="text" required placeholder="Your Name" value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="bg-charcoal/60 border border-border rounded-xl px-4 py-3 text-sm focus:border-amber-primary focus:outline-none transition-all text-white placeholder:text-white/40"
@@ -1224,7 +1224,7 @@ export default function App() {
 
             {/* RIGHT — Compact live price estimate */}
             <motion.div
-              className="lg:col-span-2 bg-gradient-to-br from-charcoal to-asphalt border border-white/10 rounded-2xl p-6 flex flex-col gap-5 sticky top-28"
+              className="lg:col-span-2 bg-gradient-to-br from-charcoal to-asphalt border border-white/10 rounded-2xl p-4 md:p-6 flex flex-col gap-4 lg:sticky lg:top-28"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: '-60px' }}
@@ -1274,7 +1274,7 @@ export default function App() {
       </section>
 
       {/* ═══ 02 — FEATURED TRANSFORMATION (compact) ═══ */}
-      <section className="relative py-14 bg-black/45 border-y border-border">
+      <section className="relative py-8 md:py-14 bg-black/45 border-y border-border">
         <div className="max-w-6xl mx-auto px-6 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
 
           <motion.div
@@ -1343,9 +1343,9 @@ export default function App() {
       </section>
 
       {/* ═══ TESTIMONIALS SECTION (LEFT TO RIGHT SCROLLING MARQUEE) ═══ */}
-      <section className="relative py-20 overflow-hidden" id="testimonials">
-        
-        <div className="text-center max-w-2xl mx-auto mb-12 px-6 md:px-8">
+      <section className="relative py-10 md:py-20 overflow-hidden" id="testimonials">
+
+        <div className="text-center max-w-2xl mx-auto mb-6 md:mb-10 px-6 md:px-8">
           <span className="text-xs font-mono tracking-widest text-amber-primary uppercase block mb-3">
             05 — Client Testimonials
           </span>
@@ -1433,10 +1433,10 @@ export default function App() {
       </section>
 
       {/* ═══ ENGINEERING METHODOLOGY — spinning cards ═══ */}
-      <section className="relative py-20 px-6 md:px-8 max-w-7xl mx-auto" id="process">
+      <section className="relative py-10 md:py-20 px-4 md:px-8 max-w-7xl mx-auto" id="process">
 
         <motion.div
-          className="text-center max-w-xl mx-auto mb-12"
+          className="text-center max-w-xl mx-auto mb-6 md:mb-10"
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
@@ -1445,7 +1445,7 @@ export default function App() {
           <span className="text-xs font-mono tracking-widest text-amber-primary uppercase block mb-3">
             05 — Engineering Methodology
           </span>
-          <h2 className="text-3xl sm:text-5xl font-sans font-black tracking-tight mb-3">
+          <h2 className="text-2xl sm:text-5xl font-sans font-black tracking-tight mb-2">
             End-to-end precision.
           </h2>
           <p className="text-sm text-white/60 font-light">
@@ -1453,7 +1453,7 @@ export default function App() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
           {[
             { step: '01', title: 'Site Core Survey', desc: 'Engineers drill core samples to assess substructure stability and drainage catchments.', icon: '🔩' },
             { step: '02', title: 'Technical Design', desc: 'CAD cross-sections with precise base gravel depths and surface course grades.', icon: '📐' },
@@ -1468,7 +1468,7 @@ export default function App() {
               transition={{ duration: 0.7, delay: idx * 0.15, ease: [0.22, 1, 0.36, 1] }}
               whileHover={{ y: -6, scale: 1.03, transition: { duration: 0.2 } }}
               style={{ transformPerspective: 900 }}
-              className="bg-charcoal border border-border rounded-2xl p-6 flex flex-col gap-4 relative overflow-hidden group hover:border-amber-primary/50 transition-colors duration-300 cursor-none"
+              className="bg-charcoal border border-border rounded-xl md:rounded-2xl p-4 md:p-6 flex flex-col gap-3 md:gap-4 relative overflow-hidden group hover:border-amber-primary/50 transition-colors duration-300 cursor-none"
               onMouseEnter={() => setCursorHovered(true)}
               onMouseLeave={() => setCursorHovered(false)}
             >
@@ -1485,10 +1485,10 @@ export default function App() {
       </section>
 
       {/* ═══ VIDEO SECTION / IMMERSIVE PLAYER ═══ */}
-      <section className="relative py-24 bg-black/60 border-y border-border">
-        <div className="max-w-7xl mx-auto px-6 md:px-8">
-          
-          <div className="flex flex-col gap-4 text-center max-w-2xl mx-auto mb-12">
+      <section className="relative py-10 md:py-20 bg-black/60 border-y border-border">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+
+          <div className="flex flex-col gap-2 text-center max-w-2xl mx-auto mb-6 md:mb-10">
             <span className="text-xs font-mono tracking-widest text-amber-primary uppercase block">
               07 — Watch Our Work
             </span>
@@ -1560,30 +1560,30 @@ export default function App() {
       </section>
 
       {/* ═══ HIGH-CONVERSION CTA BANNER ═══ */}
-      <section className="relative py-24 px-6 md:px-8 max-w-7xl mx-auto text-center overflow-hidden">
+      <section className="relative py-10 md:py-20 px-4 md:px-8 max-w-7xl mx-auto text-center overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-amber-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
         
         <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center gap-6">
-          <h2 className="text-4xl sm:text-6xl font-sans font-black tracking-tighter text-white leading-none">
+          <h2 className="text-3xl sm:text-6xl font-sans font-black tracking-tighter text-white leading-none">
             Let's build <br />
             <span className="italic font-light text-amber-primary">something lasting.</span>
           </h2>
-          <p className="text-base text-white font-light max-w-xl leading-relaxed">
-            From single bespoke estate driveways to municipal road infrastructure. Lock in your aggregate material indexes and secure a guaranteed 10-year warranty.
+          <p className="text-sm text-white font-light max-w-xl leading-relaxed">
+            From estate driveways to municipal roads. 10-year warranty guaranteed.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center gap-4 mt-4 w-full sm:w-auto">
-            <a 
-              href="tel:016523544" 
-              className="w-full sm:w-auto bg-amber-primary text-asphalt hover:brightness-110 font-bold px-8 py-4 rounded-full shadow-[0_12px_30px_-6px_rgba(255,107,0,0.35)] transition-all flex items-center justify-center gap-2 cursor-none"
+          <div className="flex flex-row flex-wrap items-center justify-center gap-3 mt-2 w-full">
+            <a
+              href="tel:016523544"
+              className="flex-1 min-w-[130px] bg-amber-primary text-asphalt hover:brightness-110 font-bold px-5 py-3 sm:px-8 sm:py-4 rounded-full shadow-[0_12px_30px_-6px_rgba(255,107,0,0.35)] transition-all flex items-center justify-center gap-2 cursor-none text-sm sm:text-base"
               onMouseEnter={() => setCursorHovered(true)}
               onMouseLeave={() => setCursorHovered(false)}
             >
               <Phone className="w-5 h-5" /> Call (01) 652 3544
             </a>
-            <a 
-              href="mailto:quotes@enuzum.ie" 
-              className="w-full sm:w-auto glass-morphism border border-border hover:border-white text-white font-semibold px-8 py-4 rounded-full transition-all flex items-center justify-center gap-2 cursor-none"
+            <a
+              href="mailto:quotes@enuzum.ie"
+              className="flex-1 min-w-[130px] glass-morphism border border-border hover:border-white text-white font-semibold px-5 py-3 sm:px-8 sm:py-4 rounded-full transition-all flex items-center justify-center gap-2 cursor-none text-sm sm:text-base"
               onMouseEnter={() => setCursorHovered(true)}
               onMouseLeave={() => setCursorHovered(false)}
             >
@@ -1594,15 +1594,15 @@ export default function App() {
       </section>
 
       {/* ═══ LATEST INSIGHTS (BLOG) ═══ */}
-      <section className="relative py-24 bg-black/30 border-t border-border" id="insights">
-        <div className="max-w-7xl mx-auto px-6 md:px-8">
-          
-          <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-16">
+      <section className="relative py-10 md:py-20 bg-black/30 border-t border-border" id="insights">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+
+          <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-3 mb-6 md:mb-12">
             <div>
               <span className="text-xs font-mono uppercase tracking-widest text-amber-primary block mb-3">
                 09 — Educational Resources
               </span>
-              <h2 className="text-3xl md:text-5xl font-sans font-black tracking-tight">
+              <h2 className="text-2xl md:text-5xl font-sans font-black tracking-tight">
                 Latest Insights
               </h2>
             </div>
@@ -1611,10 +1611,10 @@ export default function App() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
             {/* Card 1 */}
             <div className="group bg-charcoal/30 border border-border rounded-3xl overflow-hidden hover:border-amber-primary/30 transition-all duration-300 flex flex-col h-full">
-              <div className="h-48 overflow-hidden relative">
+              <div className="h-32 md:h-48 overflow-hidden relative">
                 <img 
                   src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=600&q=80" 
                   alt="Asphalt paving weather factors"
@@ -1624,7 +1624,7 @@ export default function App() {
                   Surfacing Guides
                 </span>
               </div>
-              <div className="p-6 flex flex-col flex-grow gap-3 justify-between">
+              <div className="p-4 md:p-6 flex flex-col flex-grow gap-2 md:gap-3 justify-between">
                 <div>
                   <span className="text-[10px] font-mono text-white/80">JUNE 12, 2026 · 5 MIN READ</span>
                   <h3 className="text-lg font-bold text-white group-hover:text-amber-primary transition-colors mt-1 leading-snug">
@@ -1642,7 +1642,7 @@ export default function App() {
 
             {/* Card 2 */}
             <div className="group bg-charcoal/30 border border-border rounded-3xl overflow-hidden hover:border-amber-primary/30 transition-all duration-300 flex flex-col h-full">
-              <div className="h-48 overflow-hidden relative">
+              <div className="h-32 md:h-48 overflow-hidden relative">
                 <img 
                   src="https://images.unsplash.com/photo-1515162305285-0293e4767cc2?auto=format&fit=crop&w=600&q=80" 
                   alt="Driveway sealant protection"
@@ -1652,7 +1652,7 @@ export default function App() {
                   Maintenance
                 </span>
               </div>
-              <div className="p-6 flex flex-col flex-grow gap-3 justify-between">
+              <div className="p-4 md:p-6 flex flex-col flex-grow gap-2 md:gap-3 justify-between">
                 <div>
                   <span className="text-[10px] font-mono text-white/80">MAY 28, 2026 · 4 MIN READ</span>
                   <h3 className="text-lg font-bold text-white group-hover:text-amber-primary transition-colors mt-1 leading-snug">
@@ -1670,7 +1670,7 @@ export default function App() {
 
             {/* Card 3 */}
             <div className="group bg-charcoal/30 border border-border rounded-3xl overflow-hidden hover:border-amber-primary/30 transition-all duration-300 flex flex-col h-full">
-              <div className="h-48 overflow-hidden relative">
+              <div className="h-32 md:h-48 overflow-hidden relative">
                 <img 
                   src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80" 
                   alt="Groundworks drainage planning"
@@ -1680,7 +1680,7 @@ export default function App() {
                   Civil Engineering
                 </span>
               </div>
-              <div className="p-6 flex flex-col flex-grow gap-3 justify-between">
+              <div className="p-4 md:p-6 flex flex-col flex-grow gap-2 md:gap-3 justify-between">
                 <div>
                   <span className="text-[10px] font-mono text-white/80">APRIL 14, 2026 · 6 MIN READ</span>
                   <h3 className="text-lg font-bold text-white group-hover:text-amber-primary transition-colors mt-1 leading-snug">
@@ -1701,7 +1701,7 @@ export default function App() {
       </section>
 
       {/* ═══ SOCIAL MEDIA ROW ═══ */}
-      <section className="relative py-12 border-t border-border bg-black/20 text-center z-10">
+      <section className="relative py-6 md:py-12 border-t border-border bg-black/20 text-center z-10">
         <div className="max-w-7xl mx-auto px-6 md:px-8 flex flex-col items-center gap-4">
           <h3 className="font-mono text-xs text-white/80 tracking-widest uppercase">
             Follow Our Work
@@ -1742,7 +1742,7 @@ export default function App() {
       </section>
 
       {/* ═══ FOOTER ═══ */}
-      <footer className="relative bg-asphalt border-t border-border pt-16 pb-8 px-6 md:px-8 z-10">
+      <footer className="relative bg-asphalt border-t border-border pt-10 pb-6 md:pt-16 md:pb-8 px-4 md:px-8 z-10">
         <div className="max-w-7xl mx-auto flex flex-col gap-12">
           
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
