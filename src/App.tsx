@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'motion/react';
+import { motion, AnimatePresence, useScroll, useTransform, useInView, useReducedMotion } from 'motion/react';
 import { 
   Phone, Mail, MapPin, CheckCircle, Star, ArrowRight, 
   Play, Pause, Volume2, VolumeX, Menu, X, Check, Award, 
@@ -104,6 +104,12 @@ export default function App() {
   // Custom cursor position
   const [mousePos, setMousePos] = useState({ x: -100, y: -100 });
   const [cursorHovered, setCursorHovered] = useState(false);
+  const [isMobileViewport, setIsMobileViewport] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.matchMedia('(max-width: 768px)').matches;
+  });
+  const reducedMotion = useReducedMotion();
+  const shouldReduceMotion = reducedMotion || isMobileViewport;
 
   // Before/After comparison slider position (percentage 0 to 100)
   const [sliderPos, setSliderPos] = useState(50);
@@ -132,14 +138,24 @@ export default function App() {
   const [countersActive, setCountersActive] = useState(false);
   const [counts, setCounts] = useState({ years: 0, teams: 0, projects: 0, counties: 0 });
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    const handleChange = () => setIsMobileViewport(mediaQuery.matches);
+    handleChange();
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
   // Track mouse coordinates for custom cursor
   useEffect(() => {
+    if (shouldReduceMotion) return;
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  }, [shouldReduceMotion]);
 
   // Trust strip ref — counters only fire when strip is actually visible
   const trustRef = useRef<HTMLElement>(null);
@@ -147,7 +163,7 @@ export default function App() {
 
   // Scroll progress + hero parallax
   const { scrollYProgress, scrollY } = useScroll();
-  const heroImageY = useTransform(scrollY, [0, 800], [0, 180]);
+  const heroImageY = useTransform(scrollY, [0, 800], shouldReduceMotion ? [0, 0] : [0, 180]);
 
   // Set up counter increments upon viewport entrance
   useEffect(() => {
@@ -557,7 +573,7 @@ export default function App() {
           {cms.hero.mediaType === 'video' && cms.hero.mediaFile ? (
             <video
               src={resolveMediaUrl(cms.hero.mediaFile)}
-              autoPlay muted loop playsInline
+              autoPlay muted loop playsInline preload="metadata"
               className="w-full h-full object-cover filter brightness-50"
             />
           ) : (
@@ -1034,7 +1050,7 @@ export default function App() {
 
         {/* Full-bleed auto-cycling animation — spans the whole section, from top to just past the last card */}
         <div className="absolute inset-0">
-          <AutoCycleShowcase />
+          <AutoCycleShowcase reducedMotion={shouldReduceMotion} />
           <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-asphalt to-transparent pointer-events-none" />
           <div className="absolute inset-x-0 bottom-0 h-24 sm:h-32 bg-gradient-to-b from-transparent to-asphalt pointer-events-none" />
         </div>
@@ -1110,7 +1126,7 @@ export default function App() {
       <div className="relative">
         <div className="sticky top-0 h-0 overflow-visible pointer-events-none -z-10">
           <div className="absolute inset-x-0 top-0 h-screen overflow-hidden">
-            <ParticleWave />
+            <ParticleWave reducedMotion={shouldReduceMotion} />
           </div>
         </div>
 
@@ -1500,6 +1516,7 @@ export default function App() {
             muted
             loop
             playsInline
+            preload="metadata"
             className="w-full h-full object-cover"
           />
         </div>

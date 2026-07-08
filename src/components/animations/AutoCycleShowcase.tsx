@@ -19,15 +19,16 @@ const ANIMATION_BY_CATEGORY: Record<string, ComponentType> = {
   'Bespoke Works': AnalyzeAnimation,
 };
 
-export default function AutoCycleShowcase() {
+export default function AutoCycleShowcase({ reducedMotion = false }: { reducedMotion?: boolean }) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
+    if (reducedMotion) return;
     const id = setInterval(() => {
       setIndex((i) => (i + 1) % CATEGORIES.length);
     }, 2000);
     return () => clearInterval(id);
-  }, []);
+  }, [reducedMotion]);
 
   const category = CATEGORIES[index];
   const Animation = ANIMATION_BY_CATEGORY[category];

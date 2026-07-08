@@ -3,6 +3,7 @@ import * as THREE from 'three';
 
 interface ParticleWaveProps {
   className?: string;
+  reducedMotion?: boolean;
 }
 
 const particleVertex = `
@@ -28,7 +29,7 @@ const particleFragment = `
 `;
 
 /** Full-bleed particle wave background, confined to its parent (not the viewport). Adapted from a Three.js reference component: transparent canvas, no theme switching (site is always dark), lighter particle count for a multi-section scroll background. */
-const ParticleWave: React.FC<ParticleWaveProps> = ({ className = '' }) => {
+const ParticleWave: React.FC<ParticleWaveProps> = ({ className = '', reducedMotion = false }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -41,12 +42,12 @@ const ParticleWave: React.FC<ParticleWaveProps> = ({ className = '' }) => {
 
     const scene = new THREE.Scene();
 
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, reducedMotion ? 1 : 2));
 
     const gap = 0.3;
-    const amountX = 90;
-    const amountY = 90;
+    const amountX = reducedMotion ? 42 : 90;
+    const amountY = reducedMotion ? 42 : 90;
     const particleNum = amountX * amountY;
     const particlePositions = new Float32Array(particleNum * 3);
     const particleScales = new Float32Array(particleNum);
@@ -90,20 +91,26 @@ const ParticleWave: React.FC<ParticleWaveProps> = ({ className = '' }) => {
     };
     setSize();
 
-    let animationId: number;
+    let animationId: number | undefined;
     const animate = () => {
-      particleMaterial.uniforms.uTime.value += 0.03;
+      if (!reducedMotion) {
+        particleMaterial.uniforms.uTime.value += 0.03;
+      }
       camera.lookAt(scene.position);
       renderer.render(scene, camera);
       animationId = requestAnimationFrame(animate);
     };
-    animate();
+    if (!reducedMotion) {
+      animate();
+    } else {
+      renderer.render(scene, camera);
+    }
 
     const ro = new ResizeObserver(setSize);
     ro.observe(parent);
 
     return () => {
-      cancelAnimationFrame(animationId);
+      if (animationId) cancelAnimationFrame(animationId);
       ro.disconnect();
       scene.remove(particles);
       particleGeometry.dispose();
