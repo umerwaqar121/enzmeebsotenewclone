@@ -266,19 +266,19 @@ export default function App() {
   const projects: Project[] = [
     { id: '1',  title: 'Villa Blanchard Residency',            category: 'Residential',   location: 'Co. Dublin',       specs: '2.4km estate road restoration',            material: 'SMA Asphalt (40mm)',           timeline: '14 Days',  image: photoPaverFinish },
     { id: '2',  title: 'Dublin Logistics Depot',               category: 'Commercial',    location: 'Co. Dublin',       specs: '8,500m² heavy duty freight yard',          material: 'Stone Mastic Asphalt',         timeline: '8 Days',   image: photoTruckTip },
-    { id: '3',  title: 'St. Jude Primary CFH Playground',      category: 'Sports & Play', location: 'Co. Kildare',      specs: 'Safety wetpour EPDM playground',           material: 'EPDM Rubber Wetpour',          timeline: '3 Days',   image: 'https://images.unsplash.com/photo-1597893104482-07b5eb55d53c?auto=format&fit=crop&w=800&q=80' },
+    { id: '3',  title: 'St. Jude Primary CFH Playground',      category: 'Sports & Play', location: 'Co. Kildare',      specs: 'Safety wetpour EPDM playground',           material: 'EPDM Rubber Wetpour',          timeline: '3 Days',   image: photoBeforePaving },
     { id: '4',  title: 'M50 Orbital Layout System',            category: 'Line Markings', location: 'Dublin Ring',      specs: 'Retroreflective highway markings',         material: 'Thermoplastic Compound',       timeline: '4 Nights', image: photoParkingMarkings },
-    { id: '5',  title: 'Limerick Express Cargo Terminal',       category: 'Civil',         location: 'Co. Limerick',     specs: 'Drainage network & ground consolidation',  material: 'Sub-base Gravel & Drainage',   timeline: '12 Days',  image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80' },
-    { id: '6',  title: 'Howth Waterfront Promenade',           category: 'Commercial',    location: 'Co. Dublin',       specs: 'Permeable pedestrian walkway overlay',     material: 'Gold Resin Bound Gravel',      timeline: '5 Days',   image: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=800&q=80' },
+    { id: '5',  title: 'Limerick Express Cargo Terminal',       category: 'Civil',         location: 'Co. Limerick',     specs: 'Drainage network & ground consolidation',  material: 'Sub-base Gravel & Drainage',   timeline: '12 Days',  image: photoPaverDriveway },
+    { id: '6',  title: 'Howth Waterfront Promenade',           category: 'Commercial',    location: 'Co. Dublin',       specs: 'Permeable pedestrian walkway overlay',     material: 'Gold Resin Bound Gravel',      timeline: '5 Days',   image: photoChurchMarkings },
     { id: '7',  title: 'Killiney Manor Carriage Drive',         category: 'Residential',   location: 'Co. Dublin',       specs: 'Heritage estate private driveway',         material: 'Amber Tar & Chip (3-coat)',    timeline: '2 Days',   image: photoPaverDriveway },
-    { id: '8',  title: 'Dundalk Athletics MUGA',               category: 'Sports & Play', location: 'Co. Louth',        specs: 'Triple layer acrylic running lanes',       material: 'Sports Acrylic Paint',         timeline: '6 Days',   image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80' },
-    { id: '9',  title: 'Blanchardstown D15 Road & Car Park',   category: 'Commercial',    location: 'Blanchardstown D15', specs: 'Internal estate road & car park resurfacing', material: 'Dense Macadam Binder',      timeline: '4 Days',   image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80' },
-    { id: '10', title: 'Dublin 11 Industrial Estate',           category: 'Commercial',    location: 'Dublin 11',        specs: 'Ongoing repairs — asphalt, tarmac & car park markings', material: 'Asphalt & Thermoplastic', timeline: '4+ Years', image: 'https://images.unsplash.com/photo-1513467655676-561b7d489a88?auto=format&fit=crop&w=800&q=80' },
-    { id: '11', title: 'Summerhill Management Company',         category: 'Commercial',    location: 'Co. Meath',        specs: 'Full estate repair & resurfacing',         material: 'Dense Binder Course Asphalt', timeline: '6 Days',   image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80' },
-    { id: '12', title: 'Institute of Education Car Parks',      category: 'Commercial',    location: 'Co. Dublin',       specs: 'Outdoor canteen & car park resurfacing',   material: 'SMA Wearing Course',           timeline: '10 Days',  image: 'https://images.unsplash.com/photo-1562184552-997c461abbe6?auto=format&fit=crop&w=800&q=80' },
+    { id: '8',  title: 'Dundalk Athletics MUGA',               category: 'Sports & Play', location: 'Co. Louth',        specs: 'Triple layer acrylic running lanes',       material: 'Sports Acrylic Paint',         timeline: '6 Days',   image: photoPaverFinish },
+    { id: '9',  title: 'Blanchardstown D15 Road & Car Park',   category: 'Commercial',    location: 'Blanchardstown D15', specs: 'Internal estate road & car park resurfacing', material: 'Dense Macadam Binder',      timeline: '4 Days',   image: photoTruckTip },
+    { id: '10', title: 'Dublin 11 Industrial Estate',           category: 'Commercial',    location: 'Dublin 11',        specs: 'Ongoing repairs — asphalt, tarmac & car park markings', material: 'Asphalt & Thermoplastic', timeline: '4+ Years', image: photoBeforePaving },
+    { id: '11', title: 'Summerhill Management Company',         category: 'Commercial',    location: 'Co. Meath',        specs: 'Full estate repair & resurfacing',         material: 'Dense Binder Course Asphalt', timeline: '6 Days',   image: photoParkingMarkings },
+    { id: '12', title: 'Institute of Education Car Parks',      category: 'Commercial',    location: 'Co. Dublin',       specs: 'Outdoor canteen & car park resurfacing',   material: 'SMA Wearing Course',           timeline: '10 Days',  image: photoPaverFinish },
     { id: '13', title: 'Balheary Church Car Park',              category: 'Commercial',    location: 'Co. Dublin',       specs: 'Full car park resurfacing',                material: 'Tarmacadam Wearing Course',    timeline: '3 Days',   image: photoChurchMarkings },
-    { id: '14', title: 'Stud Farm Yard Preparation',            category: 'Bespoke Works', location: 'Co. Kildare',      specs: 'Full yard preparation & resurfacing',      material: 'Rolled Macadam (2005)',        timeline: '5 Days',   image: 'https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&w=800&q=80' },
-    { id: '15', title: 'Long-Term Commercial Client',           category: 'Commercial',    location: 'Co. Dublin',       specs: 'Full carpark resurfacing & minor repairs — night & weekend works', material: 'Asphalt & Sealcoat', timeline: '20+ Years', image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=800&q=80' },
+    { id: '14', title: 'Stud Farm Yard Preparation',            category: 'Bespoke Works', location: 'Co. Kildare',      specs: 'Full yard preparation & resurfacing',      material: 'Rolled Macadam (2005)',        timeline: '5 Days',   image: photoPaverDriveway },
+    { id: '15', title: 'Long-Term Commercial Client',           category: 'Commercial',    location: 'Co. Dublin',       specs: 'Full carpark resurfacing & minor repairs — night & weekend works', material: 'Asphalt & Sealcoat', timeline: '20+ Years', image: photoParkingMarkings },
   ];
 
   const testimonials: Testimonial[] = [
@@ -497,9 +497,9 @@ export default function App() {
               <Phone className="w-4 h-4" />
               <span>(01) 652 3544</span>
             </a>
-            <a 
-              href="#calculator" 
-              className="bg-concrete hover:bg-amber-primary text-asphalt text-xs md:text-sm font-semibold px-5 py-2.5 rounded-full shadow-lg hover:shadow-amber-primary/20 transition-all cursor-none inline-flex items-center gap-1.5"
+            <a
+              href="#calculator"
+              className="hidden sm:inline-flex bg-concrete hover:bg-amber-primary text-asphalt text-xs md:text-sm font-semibold px-5 py-2.5 rounded-full shadow-lg hover:shadow-amber-primary/20 transition-all cursor-none items-center gap-1.5"
               onMouseEnter={() => setCursorHovered(true)}
               onMouseLeave={() => setCursorHovered(false)}
             >
@@ -551,7 +551,7 @@ export default function App() {
       </header>
 
       {/* ═══ PARALLAX HERO SECTION ═══ */}
-      <section className="relative min-h-[115vh] md:min-h-[125vh] flex items-center justify-center pt-14 md:pt-16 pb-10 overflow-hidden">
+      <section className="relative min-h-[100vh] md:min-h-[105vh] flex items-center justify-center pt-12 md:pt-14 pb-10 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-asphalt/20 via-asphalt/65 to-asphalt z-10"></div>
           {cms?.hero.mediaType === 'video' && cms.hero.mediaFile ? (
