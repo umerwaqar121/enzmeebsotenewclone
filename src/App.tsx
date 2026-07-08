@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform, useInView, useReducedMotion } from 'motion/react';
+import { motion, AnimatePresence, MotionConfig, useScroll, useTransform, useInView, useReducedMotion } from 'motion/react';
 import { 
   Phone, Mail, MapPin, CheckCircle, Star, ArrowRight, 
   Play, Pause, Volume2, VolumeX, Menu, X, Check, Award, 
@@ -93,6 +93,10 @@ export default function App() {
       .catch(() => {});
   }, []);
 
+  useEffect(() => {
+    setHeroVideoError(false);
+  }, [cms.hero.mediaFile]);
+
   // Navigation & UI States
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
@@ -104,6 +108,7 @@ export default function App() {
   // Custom cursor position
   const [mousePos, setMousePos] = useState({ x: -100, y: -100 });
   const [cursorHovered, setCursorHovered] = useState(false);
+  const [heroVideoError, setHeroVideoError] = useState(false);
   const [isMobileViewport, setIsMobileViewport] = useState(() => {
     if (typeof window === 'undefined') return false;
     return window.matchMedia('(max-width: 768px)').matches;
@@ -447,6 +452,7 @@ export default function App() {
   };
 
   return (
+    <MotionConfig reducedMotion={shouldReduceMotion ? 'reduce' : 'user'}>
     <div className="relative min-h-screen text-concrete bg-asphalt selection:bg-amber-primary selection:text-asphalt overflow-x-hidden">
 
       {/* ── SCROLL PROGRESS BAR ── */}
@@ -570,10 +576,15 @@ export default function App() {
       <section className="relative min-h-[100vh] md:min-h-[105vh] flex items-center justify-center pt-12 md:pt-14 pb-10 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-asphalt/20 via-asphalt/65 to-asphalt z-10"></div>
-          {cms.hero.mediaType === 'video' && cms.hero.mediaFile ? (
+          {cms.hero.mediaType === 'video' && cms.hero.mediaFile && !heroVideoError ? (
             <video
               src={resolveMediaUrl(cms.hero.mediaFile)}
-              autoPlay muted loop playsInline preload="metadata"
+              autoPlay={!shouldReduceMotion}
+              muted
+              loop
+              playsInline
+              preload={shouldReduceMotion ? 'metadata' : 'auto'}
+              onError={() => setHeroVideoError(true)}
               className="w-full h-full object-cover filter brightness-50"
             />
           ) : (
@@ -1510,15 +1521,23 @@ export default function App() {
 
         {/* Full-bleed autoplaying video — no card edges, no play button */}
         <div className="relative w-full aspect-video bg-charcoal overflow-hidden">
-          <video
-            src={cms.hero.mediaFile ? resolveMediaUrl(cms.hero.mediaFile) : undefined}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            className="w-full h-full object-cover"
-          />
+          {cms.hero.mediaFile && !heroVideoError ? (
+            <video
+              src={resolveMediaUrl(cms.hero.mediaFile)}
+              autoPlay={!shouldReduceMotion}
+              muted
+              loop
+              playsInline
+              preload={shouldReduceMotion ? 'metadata' : 'auto'}
+              onError={() => setHeroVideoError(true)}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div
+              className="w-full h-full bg-cover bg-center"
+              style={{ backgroundImage: `url(${photoTruckTip})` }}
+            />
+          )}
         </div>
 
       </section>
@@ -1765,5 +1784,6 @@ export default function App() {
       </div>
 
     </div>
+    </MotionConfig>
   );
 }

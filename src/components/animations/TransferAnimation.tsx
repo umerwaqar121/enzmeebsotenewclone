@@ -21,7 +21,7 @@ interface Wave {
   rowOffset: number;
 }
 
-export function TransferAnimation() {
+export function TransferAnimation({ reducedMotion = false }: { reducedMotion?: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
   const animationFrameRef = useRef<number>();
@@ -34,6 +34,14 @@ export function TransferAnimation() {
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
+
+    if (reducedMotion) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'rgba(255,255,255,0.12)';
+      ctx.font = '12px sans-serif';
+      ctx.fillText('Static Preview', 18, 24);
+      return;
+    }
 
     const initializeParticles = () => {
       const spacing = 8;
@@ -159,7 +167,7 @@ export function TransferAnimation() {
       ro.disconnect();
       if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
     };
-  }, []);
+  }, [reducedMotion]);
 
   return (
     <div className="relative w-full h-full overflow-hidden">

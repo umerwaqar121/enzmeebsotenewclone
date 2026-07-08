@@ -18,7 +18,7 @@ interface Wave {
   startTime: number;
 }
 
-export function ConnectAnimation() {
+export function ConnectAnimation({ reducedMotion = false }: { reducedMotion?: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
   const animationFrameRef = useRef<number>();
@@ -31,6 +31,14 @@ export function ConnectAnimation() {
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
+
+    if (reducedMotion) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'rgba(255,255,255,0.12)';
+      ctx.font = '12px sans-serif';
+      ctx.fillText('Static Preview', 18, 24);
+      return;
+    }
 
     const initializeParticles = () => {
       const spacing = 8;
@@ -146,7 +154,7 @@ export function ConnectAnimation() {
       ro.disconnect();
       if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
     };
-  }, []);
+  }, [reducedMotion]);
 
   return (
     <div className="relative w-full h-full overflow-hidden">

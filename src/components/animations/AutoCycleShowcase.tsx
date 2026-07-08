@@ -35,7 +35,7 @@ export default function AutoCycleShowcase({ reducedMotion = false }: { reducedMo
 
   return (
     <div className="relative w-full h-full overflow-hidden">
-      <Animation key={category} />
+      <Animation key={category} reducedMotion={reducedMotion} />
       <div className="absolute inset-x-0 top-[22%] sm:top-[26%] flex justify-center pointer-events-none z-10 px-4">
         <h3 className="font-display text-4xl sm:text-7xl lg:text-9xl text-white text-center uppercase leading-none">
           <DiaTextReveal text={category} skipEntrance />
