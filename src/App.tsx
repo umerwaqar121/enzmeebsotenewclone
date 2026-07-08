@@ -115,6 +115,7 @@ export default function App() {
   });
   const reducedMotion = useReducedMotion();
   const shouldReduceMotion = reducedMotion || isMobileViewport;
+  const mobileOptimized = shouldReduceMotion;
 
   // Before/After comparison slider position (percentage 0 to 100)
   const [sliderPos, setSliderPos] = useState(50);
@@ -1061,9 +1062,15 @@ export default function App() {
 
         {/* Full-bleed auto-cycling animation — spans the whole section, from top to just past the last card */}
         <div className="absolute inset-0">
-          <AutoCycleShowcase reducedMotion={shouldReduceMotion} />
-          <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-asphalt to-transparent pointer-events-none" />
-          <div className="absolute inset-x-0 bottom-0 h-24 sm:h-32 bg-gradient-to-b from-transparent to-asphalt pointer-events-none" />
+          {mobileOptimized ? (
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,107,0,0.16),transparent_55%)]" />
+          ) : (
+            <>
+              <AutoCycleShowcase reducedMotion={shouldReduceMotion} />
+              <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-asphalt to-transparent pointer-events-none" />
+              <div className="absolute inset-x-0 bottom-0 h-24 sm:h-32 bg-gradient-to-b from-transparent to-asphalt pointer-events-none" />
+            </>
+          )}
         </div>
 
         <div className="relative z-10">
@@ -1076,8 +1083,8 @@ export default function App() {
           {/* Belt 1 — scrolls left */}
           <div className="overflow-hidden mb-3">
             <div
-              className="marquee-left flex gap-3 w-max"
-              style={{ animationPlayState: pausedBelt === 'a' ? 'paused' : 'running' }}
+              className={`flex gap-3 w-max ${mobileOptimized ? 'overflow-x-auto' : 'marquee-left'}`}
+              style={{ animationPlayState: pausedBelt === 'a' ? 'paused' : 'running', animation: mobileOptimized ? 'none' : undefined }}
             >
               {[...projects, ...projects].map((proj, i) => {
                 const key = `a-${proj.id}-${i}`;
@@ -1104,8 +1111,8 @@ export default function App() {
           {/* Belt 2 — scrolls right */}
           <div className="overflow-hidden">
             <div
-              className="marquee-right flex gap-3 w-max"
-              style={{ animationPlayState: pausedBelt === 'b' ? 'paused' : 'running' }}
+              className={`flex gap-3 w-max ${mobileOptimized ? 'overflow-x-auto' : 'marquee-right'}`}
+              style={{ animationPlayState: pausedBelt === 'b' ? 'paused' : 'running', animation: mobileOptimized ? 'none' : undefined }}
             >
               {[...projects, ...projects].map((proj, i) => {
                 const key = `b-${proj.id}-${i}`;
@@ -1428,7 +1435,7 @@ export default function App() {
 
         {/* Scrolling marquee track */}
         <div className="relative w-full overflow-hidden py-4 select-none">
-          <div className="flex gap-6 animate-marquee-reverse hover:[animation-play-state:paused] w-max">
+          <div className={`flex gap-6 ${mobileOptimized ? 'flex-wrap justify-center' : 'animate-marquee-reverse hover:[animation-play-state:paused] w-max'}`}>
             {/* First sequence of cards */}
             <div className="flex gap-6 shrink-0">
               {testimonials.map((test) => (
