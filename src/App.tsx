@@ -171,6 +171,133 @@ export default function App() {
   const { scrollYProgress, scrollY } = useScroll();
   const heroImageY = useTransform(scrollY, [0, 800], shouldReduceMotion ? [0, 0] : [0, 180]);
 
+  const renderMobileOptimizedView = () => {
+    const heroMediaSrc = cms.hero.mediaFile ? resolveMediaUrl(cms.hero.mediaFile) : undefined;
+    const heroVideoVisible = cms.hero.mediaType === 'video' && heroMediaSrc && !heroVideoError;
+
+    return (
+      <div className="min-h-screen bg-asphalt text-concrete">
+        <header className="px-4 pt-4 pb-2">
+          <div className="flex items-center justify-between rounded-full border border-white/10 bg-black/30 px-4 py-3 backdrop-blur">
+            <span className="text-sm font-semibold tracking-[0.3em] text-concrete">E NUZUM</span>
+            <a href="#contact" className="text-sm text-amber-primary">Contact</a>
+          </div>
+        </header>
+
+        <main className="px-4 pb-12">
+          <section className="mt-2 overflow-hidden rounded-[28px] border border-white/10 bg-black/30">
+            <div className="relative aspect-[4/5] overflow-hidden">
+              {heroVideoVisible ? (
+                <video
+                  src={heroMediaSrc}
+                  muted
+                  loop
+                  playsInline
+                  autoPlay={false}
+                  preload="metadata"
+                  onError={() => setHeroVideoError(true)}
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <img
+                  src={heroMediaSrc || photoTruckTip}
+                  alt="Hero"
+                  className="h-full w-full object-cover"
+                />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/55 to-black/85" />
+              <div className="absolute inset-x-0 bottom-0 p-5">
+                <p className="mb-2 text-[10px] font-mono uppercase tracking-[0.35em] text-amber-primary">Surfacing • Asphalt • Civil</p>
+                <h1 className="text-4xl font-black leading-[0.95] text-white">
+                  {cms.hero.headline || 'Surfacing'}
+                </h1>
+                <p className="mt-3 max-w-xl text-sm leading-6 text-white/80">
+                  {cms.hero.subheadline || "Ireland's premier surfacing specialists."}
+                </p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <a href="#calculator" className="rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-asphalt">Get a quote</a>
+                  <a href="#projects" className="rounded-full border border-white/25 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white">Our work</a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="mt-4 grid grid-cols-2 gap-3">
+            {[
+              { value: '68+', label: 'Years' },
+              { value: '100%', label: 'In-house' },
+              { value: '500+', label: 'Projects' },
+              { value: '26', label: 'Counties' }
+            ].map((stat) => (
+              <div key={stat.label} className="rounded-2xl border border-white/10 bg-black/25 p-3 text-center">
+                <div className="text-xl font-black text-white">{stat.value}</div>
+                <div className="mt-1 text-[11px] uppercase tracking-[0.25em] text-white/60">{stat.label}</div>
+              </div>
+            ))}
+          </section>
+
+          <section className="mt-4 rounded-[24px] border border-white/10 bg-black/25 p-4">
+            <div className="mb-3 flex items-center justify-between">
+              <h2 className="text-lg font-semibold text-white">Core services</h2>
+              <span className="text-[10px] uppercase tracking-[0.3em] text-amber-primary">Fast</span>
+            </div>
+            <div className="space-y-2">
+              {services.slice(0, 4).map((service) => (
+                <div key={service.id} className="rounded-2xl border border-white/10 bg-white/5 px-3 py-3">
+                  <div className="text-sm font-semibold text-white">{service.title}</div>
+                  <div className="mt-1 text-sm leading-5 text-white/70">{service.desc}</div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section id="projects" className="mt-4 rounded-[24px] border border-white/10 bg-black/25 p-4">
+            <div className="mb-3">
+              <h2 className="text-lg font-semibold text-white">Recent projects</h2>
+              <p className="mt-1 text-sm text-white/70">Current and completed work across Ireland.</p>
+            </div>
+            <div className="space-y-2">
+              {projects.slice(0, 6).map((project) => (
+                <div key={project.id} className="rounded-2xl border border-white/10 bg-white/5 p-3">
+                  <div className="text-sm font-semibold text-white">{project.title}</div>
+                  <div className="mt-1 text-sm text-white/70">{project.location} • {project.timeline}</div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="mt-4 overflow-hidden rounded-[24px] border border-white/10 bg-black/25">
+            <div className="aspect-video bg-black/40">
+              {heroVideoVisible ? (
+                <video
+                  src={heroMediaSrc}
+                  muted
+                  loop
+                  playsInline
+                  autoPlay={false}
+                  preload="metadata"
+                  onError={() => setHeroVideoError(true)}
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <img src={heroMediaSrc || photoTruckTip} alt="Work video" className="h-full w-full object-cover" />
+              )}
+            </div>
+          </section>
+
+          <section id="contact" className="mt-4 rounded-[24px] border border-white/10 bg-black/25 p-4">
+            <h2 className="text-lg font-semibold text-white">Get in touch</h2>
+            <p className="mt-2 text-sm leading-6 text-white/70">Call or message for a fast quote and site visit.</p>
+            <div className="mt-4 flex flex-col gap-2 text-sm">
+              <a href="tel:016523544" className="text-amber-primary">(01) 652 3544</a>
+              <a href="mailto:quotes@enuzum.ie" className="text-white/80">quotes@enuzum.ie</a>
+            </div>
+          </section>
+        </main>
+      </div>
+    );
+  };
+
   // Set up counter increments upon viewport entrance
   useEffect(() => {
     if (trustInView) setCountersActive(true);
@@ -451,6 +578,10 @@ export default function App() {
     window.open(`https://wa.me/35316523544?text=${encodeURIComponent(chatInput)}`, '_blank');
     setChatInput('');
   };
+
+  if (mobileOptimized) {
+    return renderMobileOptimizedView();
+  }
 
   return (
     <MotionConfig reducedMotion={shouldReduceMotion ? 'reduce' : 'user'}>
