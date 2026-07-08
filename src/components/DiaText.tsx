@@ -18,7 +18,7 @@ interface DiaTextProps {
 export function DiaTextReveal({ text, className = '' }: { text: string; className?: string }) {
   return (
     <span className={`relative inline-grid ${className}`}>
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" initial={false}>
         <motion.span
           key={text}
           initial={{ opacity: 0, y: '60%', filter: 'blur(6px)' }}
@@ -47,15 +47,15 @@ export default function DiaText({ text, repeat = false, repeatDelay = 1.1, class
   }, [index, isLast, repeat, repeatDelay, text.length]);
 
   return (
-    <span className={`relative inline-grid ${className}`}>
-      <AnimatePresence mode="wait">
+    <span className="relative inline-grid">
+      <AnimatePresence mode="wait" initial={false}>
         <motion.span
           key={index}
           initial={{ opacity: 0, y: '60%', filter: 'blur(6px)' }}
           animate={{ opacity: 1, y: '0%', filter: 'blur(0px)' }}
           exit={{ opacity: 0, y: '-60%', filter: 'blur(6px)' }}
           transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-          className="col-start-1 row-start-1"
+          className={`col-start-1 row-start-1 ${className}`}
         >
           {text[index]}
         </motion.span>

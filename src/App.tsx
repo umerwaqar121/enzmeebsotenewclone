@@ -12,7 +12,7 @@ import PavementCoreSample from './components/PavementCoreSample';
 import AutoCycleShowcase from './components/animations/AutoCycleShowcase';
 import { GradientShimmer } from './components/GradientShimmer';
 import { OriginButton } from './components/OriginButton';
-import DiaText from './components/DiaText';
+import DiaText, { DiaTextReveal } from './components/DiaText';
 
 // Compact high-quality types & interfaces
 interface Project {
@@ -91,7 +91,6 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
   const [pausedBelt, setPausedBelt] = useState<'a' | 'b' | null>(null);
-  const [expandedStep, setExpandedStep] = useState<number | null>(null);
   const [blogComingSoon, setBlogComingSoon] = useState(false);
   const [reviewsOpen, setReviewsOpen] = useState(false);
   const [activeService, setActiveService] = useState<string | null>(null);
@@ -468,7 +467,7 @@ export default function App() {
           </a>
 
           <ul className="hidden md:flex items-center gap-5 lg:gap-6">
-            {['Projects', 'Process', 'Testimonials', 'Calculator', 'Insights', 'Contact'].map((link) => (
+            {['Projects', 'Testimonials', 'Calculator', 'Insights', 'Contact'].map((link) => (
               <li key={link}>
                 <a 
                   href={`#${link.toLowerCase()}`}
@@ -520,7 +519,7 @@ export default function App() {
               exit={{ opacity: 0, y: -20 }}
               className="absolute top-20 left-0 w-full glass-morphism rounded-3xl p-6 border border-border flex flex-col gap-4 shadow-2xl md:hidden"
             >
-              {['Services', 'Projects', 'Process', 'Testimonials', 'Calculator'].map((link) => (
+              {['Projects', 'Testimonials', 'Calculator', 'Insights', 'Contact'].map((link) => (
                 <a 
                   key={link}
                   href={`#${link.toLowerCase()}`}
@@ -565,31 +564,22 @@ export default function App() {
           )}
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-6 md:px-8 z-20 text-center flex flex-col items-center gap-4 sm:gap-6 mt-4 md:mt-10">
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-glass border border-border backdrop-blur-md"
-          >
-            <span className="w-2 h-2 rounded-full bg-amber-primary animate-pulse shadow-[0_0_10px_#FF6B00]"></span>
-            <span className="font-mono text-xs text-white tracking-widest uppercase">
-              Engineering Excellence Since 1956
-            </span>
-          </motion.div>
+        <div className="relative max-w-7xl mx-auto px-6 md:px-8 z-20 text-center flex flex-col items-center gap-4 sm:gap-6 mt-1 md:mt-6">
 
           <div className="overflow-hidden">
             <motion.h1
               initial={{ opacity: 0, y: 60 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="text-4xl sm:text-6xl md:text-8xl font-sans font-black tracking-tighter leading-[0.9] text-concrete select-none"
+              className="text-5xl sm:text-7xl md:text-9xl font-sans font-black tracking-tighter leading-[0.9] text-concrete select-none"
             >
               {cms?.hero.headline || 'Surfacing'} <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-600 to-red-500 bg-300%">
-                <DiaText text={['Redefined.', 'Reinvented.', 'Rebuilt.']} repeat repeatDelay={1.6} />
-              </span>
+              <DiaText
+                text={['Redefined.', 'Reinvented.', 'Rebuilt.']}
+                repeat
+                repeatDelay={1.6}
+                className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-600 to-red-500"
+              />
             </motion.h1>
           </div>
 
@@ -1318,22 +1308,13 @@ export default function App() {
           <motion.div
             className="flex flex-col gap-4"
             initial={{ opacity: 0, x: -24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           >
             <span className="text-xs font-mono tracking-widest text-amber-primary uppercase">03 — Featured Transformation</span>
-            <div className="overflow-hidden">
-              <motion.h2
-                className="font-display text-2xl sm:text-3xl tracking-tight"
-                initial={{ x: '-100%' }}
-                whileInView={{ x: '0%' }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              >
-                Villa Blanchard <br />Residents Association.
-              </motion.h2>
-            </div>
+            <h2 className="font-display text-2xl sm:text-3xl tracking-tight">
+              <DiaTextReveal text="Villa Blanchard Residents Association." />
+            </h2>
             <p className="text-sm text-white/70 font-light leading-relaxed">
               2.4km of private estate lanes fully restored — new sub-base, premium SMA asphalt, and reflective line markings.
             </p>
@@ -1345,11 +1326,12 @@ export default function App() {
                 </div>
               ))}
             </div>
-            <a href="#calculator"
-              className="self-start bg-white text-asphalt text-xs font-bold tracking-wider uppercase px-5 py-3 rounded-full inline-flex items-center gap-2 hover:bg-amber-primary transition-all cursor-none"
+            <OriginButton
+              onClick={() => { window.location.hash = '#calculator'; }}
+              className="self-start bg-white text-asphalt text-xs font-bold tracking-wider uppercase px-5 py-3 rounded-full"
               onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)}>
               Discuss Your Project <ArrowRight className="w-3.5 h-3.5" />
-            </a>
+            </OriginButton>
           </motion.div>
 
           {/* Compact before/after slider */}
@@ -1478,75 +1460,6 @@ export default function App() {
 
       </section>
 
-      {/* ═══ ENGINEERING METHODOLOGY — spinning cards ═══ */}
-      <section className="relative py-10 md:py-20 px-4 md:px-8 max-w-7xl mx-auto" id="process">
-
-        <motion.div
-          className="text-center max-w-xl mx-auto mb-6 md:mb-10"
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <span className="text-xs font-mono tracking-widest text-amber-primary uppercase block mb-3">
-            05 — Engineering Methodology
-          </span>
-          <h2 className="text-2xl sm:text-5xl font-sans font-black tracking-tight mb-2">
-            End-to-end precision.
-          </h2>
-          <p className="text-sm text-white/60 font-light">
-            In-house control across all four phases. No subcontractors, no compromises.
-          </p>
-        </motion.div>
-
-        <div className="flex flex-col gap-2 md:gap-2.5 max-w-3xl mx-auto">
-          {[
-            { step: '01', title: 'Site Core Survey', desc: 'Engineers drill core samples to assess substructure stability and drainage catchments.', icon: '🔩' },
-            { step: '02', title: 'Technical Design', desc: 'CAD cross-sections with precise base gravel depths and surface course grades.', icon: '📐' },
-            { step: '03', title: 'Plant Deployment', desc: 'Heavy fleet dispatched from local depots carrying hot asphalt material.', icon: '🚛' },
-            { step: '04', title: 'Quality Sign-Off', desc: 'Laser drainage checks, compaction audits, and warranty certificates issued.', icon: '✅' }
-          ].map((proc, idx) => {
-            const expanded = expandedStep === idx;
-            return (
-              <motion.div
-                key={idx}
-                layout
-                initial={{ opacity: 0, x: -40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: '-30px' }}
-                transition={{ duration: 0.6, delay: idx * 0.5, ease: [0.22, 1, 0.36, 1] }}
-                animate={{ scale: expanded ? 1.04 : 1 }}
-                style={{ zIndex: expanded ? 10 : 1 }}
-                onClick={() => setExpandedStep(expanded ? null : idx)}
-                className={`relative flex items-center gap-4 md:gap-6 bg-charcoal border rounded-xl md:rounded-2xl px-4 py-4 md:px-6 md:py-5 cursor-pointer transition-colors duration-300 ${
-                  expanded ? 'border-amber-primary shadow-[0_20px_45px_-14px_rgba(255,107,0,0.4)]' : 'border-border hover:border-amber-primary/40'
-                }`}
-              >
-                <span className="text-3xl md:text-4xl shrink-0">{proc.icon}</span>
-                <div className="flex-1 min-w-0">
-                  <span className="text-[9px] font-mono text-amber-primary tracking-widest uppercase block mb-1">Step {proc.step}</span>
-                  <h3 className="text-sm md:text-base font-bold tracking-tight text-concrete">{proc.title}</h3>
-                  <AnimatePresence>
-                    {expanded && (
-                      <motion.p
-                        initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                        animate={{ opacity: 1, height: 'auto', marginTop: 8 }}
-                        exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                        className="text-xs text-white/60 leading-relaxed font-light overflow-hidden"
-                      >
-                        {proc.desc}
-                      </motion.p>
-                    )}
-                  </AnimatePresence>
-                </div>
-                <span className="text-4xl md:text-5xl font-black text-white/[0.05] select-none leading-none shrink-0">{proc.step}</span>
-              </motion.div>
-            );
-          })}
-        </div>
-      </section>
-
       {/* ═══ VIDEO SECTION / IMMERSIVE PLAYER ═══ */}
       <section className="relative py-10 md:py-20 bg-black/60 border-y border-border">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -1555,8 +1468,8 @@ export default function App() {
             <span className="text-xs font-mono tracking-widest text-amber-primary uppercase block">
               07 — Watch Our Work
             </span>
-            <h2 className="text-3xl sm:text-5xl font-sans font-black tracking-tight">
-              Real projects. Real precision.
+            <h2 className="font-display text-3xl sm:text-5xl tracking-tight">
+              <DiaTextReveal text="Real projects. Real precision." />
             </h2>
             <p className="text-sm text-white font-light leading-relaxed">
               Experience the steam-rolling, bitumen spraying, and grading operations live from our municipal roadwork sites.
@@ -1797,23 +1710,23 @@ export default function App() {
         {/* Floating WhatsApp Bubble with "Chat to us" pop up */}
         <div className="relative flex flex-col items-end">
           {!whatsAppOpen && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 8, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              className="absolute bottom-16 right-0 bg-emerald-600 text-white text-[10px] font-mono uppercase tracking-wider px-3 py-1.5 rounded-lg shadow-xl border border-emerald-500 whitespace-nowrap flex items-center gap-2 mb-1"
+              className="absolute bottom-16 right-0 bg-white text-asphalt text-[10px] font-mono uppercase tracking-wider px-3 py-1.5 rounded-lg shadow-xl border border-white/20 whitespace-nowrap flex items-center gap-2 mb-1"
             >
-              <span className="w-1.5 h-1.5 bg-emerald-200 rounded-full animate-ping"></span>
+              <span className="w-1.5 h-1.5 bg-black rounded-full animate-ping"></span>
               Chat to us
-              <div className="absolute bottom-[-4px] right-6 w-2 h-2 bg-emerald-600 rotate-45 border-r border-b border-emerald-500/20"></div>
+              <div className="absolute bottom-[-4px] right-6 w-2 h-2 bg-white rotate-45 border-r border-b border-white/20"></div>
             </motion.div>
           )}
-          <OriginButton 
+          <OriginButton
             onClick={() => setWhatsAppOpen(!whatsAppOpen)}
-            className="w-14 h-14 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full flex items-center justify-center shadow-[0_4px_16px_rgba(16,185,129,0.35)] transition-all scale-100 hover:scale-105 cursor-none"
+            className="w-14 h-14 bg-white hover:bg-white/90 text-black rounded-full flex items-center justify-center shadow-[0_4px_20px_rgba(255,255,255,0.25)] transition-all scale-100 hover:scale-105 cursor-none"
             onMouseEnter={() => setCursorHovered(true)}
             onMouseLeave={() => setCursorHovered(false)}
           >
-            <MessageSquare className="w-6 h-6 fill-white text-emerald-600" />
+            <MessageSquare className="w-6 h-6 fill-black text-black" />
           </OriginButton>
         </div>
       </div>
