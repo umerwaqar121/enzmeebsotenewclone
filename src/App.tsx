@@ -473,7 +473,7 @@ export default function App() {
           </a>
 
           <ul className="hidden md:flex items-center gap-5 lg:gap-6">
-            {['Testimonials', 'Contact'].map((link) => (
+            {['Testimonials', 'Calculator', 'Contact'].map((link) => (
               <li key={link}>
                 <a 
                   href={`#${link.toLowerCase()}`}
@@ -525,7 +525,7 @@ export default function App() {
               exit={{ opacity: 0, y: -20 }}
               className="absolute top-20 left-0 w-full glass-morphism rounded-3xl p-6 border border-border flex flex-col gap-4 shadow-2xl md:hidden"
             >
-              {['Testimonials', 'Contact'].map((link) => (
+              {['Testimonials', 'Calculator', 'Contact'].map((link) => (
                 <a 
                   key={link}
                   href={`#${link.toLowerCase()}`}
